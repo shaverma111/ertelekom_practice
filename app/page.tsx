@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import HeroSection from './components/HeroSection';
-import AboutCard from './components/AboutCard';
-import TaskCard from './components/TaskCard';
+import ContentCard from './components/ContentCard';
 
 export default function Home() {
   return (
@@ -16,19 +15,19 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
             <div className="md:col-span-3">
-              <AboutCard main icon="&#129302;" title="ML Инженер">
+              <ContentCard icon="&#129302;" title="ML Инженер" highlight>
                 Это программист, который создаёт системы, способные учиться на данных. Вместо того чтобы писать правила вручную, он даёт компьютеру примеры — и компьютер сам находит закономерности.
-              </AboutCard>
+              </ContentCard>
             </div>
-            <AboutCard icon="&#128200;" title="Предсказания">
+            <ContentCard icon="&#128200;" title="Предсказания">
               Прогнозирует спрос, выявляет мошенничество, определяет болезни по снимкам.
-            </AboutCard>
-            <AboutCard icon="&#128161;" title="Автоматизация">
+            </ContentCard>
+            <ContentCard icon="&#128161;" title="Автоматизация">
               Заменяет рутинные решения человека на быстрые алгоритмы.
-            </AboutCard>
-            <AboutCard icon="&#128190;" title="Данные">
+            </ContentCard>
+            <ContentCard icon="&#128190;" title="Данные">
               Работает с огромными массивами информации и превращает их в ценность.
-            </AboutCard>
+            </ContentCard>
           </div>
           <div className="text-center mt-10">
             <Link href="/about" className="inline-flex items-center justify-center h-10 px-5 rounded-lg bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-dark)] transition-colors">
@@ -48,15 +47,15 @@ export default function Home() {
             Чем конкретно занимается ML инженер день за днём
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <TaskCard number={1} title="Сбор и подготовка данных">
+            <ContentCard number={1} title="Сбор и подготовка данных">
               Находит нужные данные, чистит их от мусора, заполняет пропуски и превращает в формат, понятный модели.
-            </TaskCard>
-            <TaskCard number={2} title="Проектирование моделей">
+            </ContentCard>
+            <ContentCard number={2} title="Проектирование моделей">
               Выбирает архитектуру нейросети или алгоритма под конкретную задачу.
-            </TaskCard>
-            <TaskCard number={3} title="Обучение моделей">
+            </ContentCard>
+            <ContentCard number={3} title="Обучение моделей">
               Запускает процесс обучения, настраивает гиперпараметры, следит за метриками.
-            </TaskCard>
+            </ContentCard>
           </div>
           <div className="text-center mt-10">
             <Link href="/about" className="inline-flex items-center justify-center h-10 px-5 rounded-lg border border-[var(--color-border)] text-[var(--color-foreground)] font-semibold text-sm hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-bg)] transition-colors">

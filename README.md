@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ML Инженер — Профессия будущего | ЭРТХ
 
-## Getting Started
+Интерактивный лендинг о профессии Machine Learning Engineer. Рассказывает студентам, кто такой ML-инженер, какие навыки нужны и как начать карьеру.
 
-First, run the development server:
+## Стек
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Технология | Версия | Назначение |
+|---|---|---|
+| Next.js | 16 | App Router, SSR, статическая генерация |
+| React | 19 | UI-компоненты |
+| TypeScript | 6 | Строгая типизация |
+| Ant Design | 6 | UI-библиотека (Button, Card, Menu, Timeline, Typography) |
+| Tailwind CSS | 4 | Утилитарные стили, отступы, типографика |
+
+## Структура проекта
+
+```
+app/
+├── layout.tsx              # Root layout (Providers, Header, Footer)
+├── page.tsx                # Главная страница
+├── globals.css             # Глобальные стили + CSS-переменные
+├── about/page.tsx          # О профессии (задачи, день из жизни)
+├── skills/page.tsx         # Hard & Soft скиллы
+├── career/page.tsx         # Пошаговый план карьеры
+├── erth/page.tsx           # Почему роль важна для ЭРТХ
+├── quiz/page.tsx           # Тест "Подходит ли тебе ML?"
+└── components/
+    ├── Providers.tsx       # Ant Design ConfigProvider (locale ru_RU)
+    ├── Header.tsx          # Навигация (Menu + мобильный Drawer)
+    ├── Footer.tsx          # Подвал
+    ├── HeroSection.tsx     # Hero-баннер на главной
+    ├── AboutCard.tsx       # Карточка "О профессии"
+    ├── TaskCard.tsx        # Карточка задачи (номер + заголовок)
+    ├── ContentCard.tsx     # Универсальная карточка контента
+    ├── PageSection.tsx     # Обёртка секции страницы
+    ├── CopyButton.tsx      # Кнопка копирования в буфер
+    ├── SkillTags.tsx       # Теги скиллов
+    ├── CareerTimeline.tsx  # Таймлайн карьерного пути
+    ├── DaySchedule.tsx     # Распорядок дня ML-инженера
+    └── QuizBlock.tsx       # Блок теста с прогрессом
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Страницы
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+| Путь | Описание |
+|---|---|
+| `/` | Главная — Hero, превью о профессии, задачи, CTA |
+| `/about` | Подробно о профессии, 7 задач, день из жизни |
+| `/skills` | Hard Skills и Soft Skills с тегами |
+| `/career` | 6 шагов карьерного пути (таймлайн) |
+| `/erth` | Важность роли для ЭРТХ (4 карточки) |
+| `/quiz` | Тест из 8 вопросов с результатом |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Переиспользуемые UI-компоненты
 
-## Learn More
+### `<PageSection>`
+Обёртка для секций страницы с заголовком, подзаголовком и подсветкой акцента.
 
-To learn more about Next.js, take a look at the following resources:
+```tsx
+<PageSection
+  title="Заголовок страницы"
+  subtitle="Описание"
+  accent="слово"        // подсветит синим
+  paddingTop="pt-24"    // отступ от фиксированного хедера
+  className="bg-white"  // доп. классы
+>
+  {children}
+</PageSection>
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### `<ContentCard>`
+Универсальная карточка с иконкой, номером и анимацией ховера.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```tsx
+<ContentCard
+  title="Заголовок"
+  icon="&#128200;"       // эмодзи
+  number={1}            // номер "01"
+  highlight             // акцентный фон на всю ширину
+  hoverable             // анимация (default: true)
+>
+  Описание карточки
+</ContentCard>
+```
 
-## Deploy on Vercel
+### `<CopyButton>`
+Кнопка копирования текста в буфер обмена с feedback.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```tsx
+<CopyButton text="Текст для копирования" label="Копировать" />
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Установка и запуск
+
+```bash
+# Установка зависимостей
+npm install
+
+# Разработка
+npm run dev
+
+# Сборка
+npm run build
+
+# Запуск продакшена
+npm start
+
+# Линтинг
+npm run lint
+```
+
+## Деплой на Vercel
+
+Проект полностью готов к деплою. Vercel подхватит репозиторий автоматически.
+
+```bash
+git push origin main
+```
+
+Все страницы генерируются статически (SSG) — максимальная скорость загрузки.
+
+## Конфигурация
+
+- `next.config.mjs` — `output: 'standalone'`, транспиляция antd
+- `tsconfig.json` — strict mode, path alias `@/*`
+- `postcss.config.mjs` — Tailwind CSS v4
+- `eslint.config.mjs` — eslint-config-next/core-web-vitals
